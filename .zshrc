@@ -1,7 +1,8 @@
 #
 # .zshrc
 #
-# @author Jeff Geerling
+# @author Jeff Duska 
+# Dotfiles forked from geerlingguy/dotfiles, @author Jeff Geerling
 #
 
 # Colors.
@@ -12,6 +13,24 @@ export CLICOLOR_FORCE=1
 # Don't require escaping globbing characters in zsh.
 unsetopt nomatch
 
+# History Settings
+## Ignore duplicate commands and commands that start with a space 
+HISTCONTROL=ignoreboth
+
+## Set the size of the History in session and on the in the history file, unlike bash setting these to empty string does set them to unlimited. 
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+
+## Set Immediate Append so the history is added immediately not when the shell closes
+setopt INC_APPEND_HISTORY
+
+## Add a timestime to our history
+export HISTTIMEFORMAT="[%F %T]"
+setopt EXTENDED_HISTORY
+
+## Commands to ignore and not include in the history file
+HISTIGNORE="exit:clear"
+
 # Nicer prompt.
 export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
 
@@ -19,7 +38,7 @@ export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
 plugins=(git brew history kubectl history-substring-search)
 
 # Custom $PATH with extra locations.
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=ƒ/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
 
 # Bash-style time output.
 export TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
@@ -125,3 +144,7 @@ export COMPOSER_MEMORY_LIMIT=-1
 #}
 #shopt -s extdebug
 #trap prod_command_trap DEBUG
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
