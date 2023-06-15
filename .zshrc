@@ -1,7 +1,7 @@
 #
 # .zshrc
 #
-# @author Jeff Duska 
+# @author Jeff Duska
 # Dotfiles forked from geerlingguy/dotfiles, @author Jeff Geerling
 #
 
@@ -14,10 +14,10 @@ export CLICOLOR_FORCE=1
 unsetopt nomatch
 
 # History Settings
-## Ignore duplicate commands and commands that start with a space 
+## Ignore duplicate commands and commands that start with a space
 HISTCONTROL=ignoreboth
 
-## Set the size of the History in session and on the in the history file, unlike bash setting these to empty string does set them to unlimited. 
+## Set the size of the History in session and on the in the history file, unlike bash setting these to empty string does set them to unlimited.
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000
 
@@ -64,12 +64,20 @@ source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.z
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+#K9s aliases
+# alias k9slogs=$(k9s info | \grep \'Logs\' | sed -e $\'s#\033\[[;0-9]*m##g\' | awk -F \':\' \'{print $2}\' | xargs)
+
+
 # Git aliases.
 alias gs='git status'
 alias gc='git commit'
 alias gp='git pull --rebase'
 alias gcam='git commit -am'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+
+# *tool aliases
+alias wtf=thefuck
+alias z=zoxide
 
 # Completions.
 autoload -Uz compinit && compinit
@@ -154,3 +162,15 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/Python/3.9/bin:${HOME}/Python/3.9/lib"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(atuin init zsh)"
