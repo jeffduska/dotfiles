@@ -64,12 +64,20 @@ source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.z
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
+#K9s aliases
+# alias k9slogs=$(k9s info | \grep \'Logs\' | sed -e $\'s#\033\[[;0-9]*m##g\' | awk -F \':\' \'{print $2}\' | xargs)
+
+
 # Git aliases.
 alias gs='git status'
 alias gc='git commit'
 alias gp='git pull --rebase'
 alias gcam='git commit -am'
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+
+# *tool aliases
+alias wtf=thefuck
+alias z=zoxide
 
 # Completions.
 autoload -Uz compinit && compinit
@@ -125,6 +133,8 @@ knownrm() {
  fi
 }
 
+export GRADLE_USER_HOME=~/.gradle
+
 # Allow Composer to use almost as much RAM as Chrome.
 export COMPOSER_MEMORY_LIMIT=-1
 
@@ -145,6 +155,11 @@ export COMPOSER_MEMORY_LIMIT=-1
 #shopt -s extdebug
 #trap prod_command_trap DEBUG
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(atuin init zsh)"
+
 # Set the arrow keys with option to move backward and forward a word
 bindkey "[D" backward-word
 bindkey "[C" forward-word
@@ -154,3 +169,8 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/Python/3.9/bin:${HOME}/Python/3.9/lib"
+
+
+
+
