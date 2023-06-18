@@ -1,8 +1,8 @@
 #
 # .zshrc
 #
-# @author Jeff Duska 
-# Based on Jeff Geerling's dotfile
+# @author Jeff Duska
+# Dotfiles forked from geerlingguy/dotfiles, @author Jeff Geerling
 #
 
 # Colors.
@@ -13,6 +13,24 @@ export CLICOLOR_FORCE=1
 # Don't require escaping globbing characters in zsh.
 unsetopt nomatch
 
+# History Settings
+## Ignore duplicate commands and commands that start with a space
+HISTCONTROL=ignoreboth
+
+## Set the size of the History in session and on the in the history file, unlike bash setting these to empty string does set them to unlimited.
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+
+## Set Immediate Append so the history is added immediately not when the shell closes
+setopt INC_APPEND_HISTORY
+
+## Add a timestime to our history
+export HISTTIMEFORMAT="[%F %T]"
+setopt EXTENDED_HISTORY
+
+## Commands to ignore and not include in the history file
+HISTIGNORE="exit:clear"
+
 # Nicer prompt.
 export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
 
@@ -20,7 +38,7 @@ export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
 plugins=(git brew history kubectl history-substring-search)
 
 # Custom $PATH with extra locations.
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
 
 # Bash-style time output.
 export TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
@@ -50,7 +68,7 @@ bindkey "^[[B" history-substring-search-down
 # alias k9slogs=$(k9s info | \grep \'Logs\' | sed -e $\'s#\033\[[;0-9]*m##g\' | awk -F \':\' \'{print $2}\' | xargs)
 
 
-# Git aliases.                                                                                 
+# Git aliases.
 alias gs='git status'
 alias gc='git commit'
 alias gp='git pull --rebase'
@@ -59,7 +77,7 @@ alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 
 # *tool aliases
 alias wtf=thefuck
-alias z=zoxide 
+alias z=zoxide
 
 # Completions.
 autoload -Uz compinit && compinit
@@ -148,3 +166,13 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(atuin init zsh)"
+
+# Set the arrow keys with option to move backward and forward a word
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
