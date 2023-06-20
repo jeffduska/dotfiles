@@ -172,5 +172,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/Python/3.9/bin:${HOME}/Python/3.9/lib"
 
 
+eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/jandedobbeleer.omp.json)"
 
-
+eval "$(zoxide init zsh)"
