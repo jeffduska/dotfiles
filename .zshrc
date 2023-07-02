@@ -133,6 +133,18 @@ knownrm() {
  fi
 }
 
+# Install (one or multiple) selected application(s)
+# using "brew search" as source input
+# mnemonic [B]rew [I]nstall [P]ackage
+bip() {
+  local inst=$(brew search "$@" | fzf -m)
+
+  if [[ $inst ]]; then
+    for prog in $(echo $inst);
+    do; brew install $prog; done;
+  fi
+}
+
 export GRADLE_USER_HOME=~/.gradle
 
 # Allow Composer to use almost as much RAM as Chrome.
