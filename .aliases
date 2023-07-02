@@ -1,0 +1,8 @@
+#
+# .aliases
+#
+# @author Jeff Duska 
+#
+
+# Alias to mosh to diskstation 
+alias ds'=mosh --server=/usr/local/bin/mosh-server diskstation.local'
