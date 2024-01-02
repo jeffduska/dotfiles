@@ -187,3 +187,8 @@ export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/Python/3.9/bin:${HOME}/Python/3.9
 eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/jandedobbeleer.omp.json)"
 
 eval "$(zoxide init zsh)"
+
+# Add Support for pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
