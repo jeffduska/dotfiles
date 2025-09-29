@@ -77,7 +77,6 @@ alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %
 
 # *tool aliases
 alias wtf=thefuck
-alias z=zoxide
 
 # Completions.
 autoload -Uz compinit && compinit
@@ -186,9 +185,18 @@ export PATH="${PATH}:${HOME}/.krew/bin:${HOME}/Python/3.9/bin:${HOME}/Python/3.9
 
 eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/jandedobbeleer.omp.json)"
 
-eval "$(zoxide init zsh)"
-
 # Add Support for pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+# Created by `pipx` on 2024-02-14 05:52:28
+export PATH="$PATH:/Users/jeff/.local/bin"
+export PATH="/opt/homebrew/bin:$PATH"
+
+eval "$(zoxide init zsh)"
+
+if [ -f "/Users/jeff/.config/fabric/fabric-bootstrap.inc" ]; then . "/Users/jeff/.config/fabric/fabric-bootstrap.inc"; fi
+export PATH="/opt/homebrew/sbin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jeff/.cache/lm-studio/bin"
